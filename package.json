@@ -1,0 +1,14 @@
+{
+  "name": "chd-node",
+  "version": "0.0.1",
+  "description": "Tool to make changing to frequently visited directories faster.",
+  "main": "index.js",
+  "repository": "https://github.com/zacharyedwardsdowns/chd.git",
+  "author": "Zachary Edwards Downs",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "commander": "^9.0.0",
+    "conf": "^10.1.1"
+  }
+}
