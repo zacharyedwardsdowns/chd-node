@@ -1,6 +1,6 @@
 {
   "name": "chd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tool to make changing to frequently visited directories faster.",
   "main": "src/chd.js",
   "repository": "https://github.com/zacharyedwardsdowns/chd.git",
@@ -14,11 +14,10 @@
     "chd": "node src/chd.js"
   },
   "dependencies": {
-    "@types/node": "^17.0.16",
     "@types/node-persist": "^3.1.2",
     "chalk": "^5.0.0",
     "commander": "^9.0.0",
     "node-persist": "^3.1.0",
-    "typescript": "^4.5.5"
+    "winston": "^3.5.1"
   }
 }
