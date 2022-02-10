@@ -11,7 +11,7 @@ Currently non-installable
 
 A usage guide can be found using:
 
-`chd help`
+`chd --help`
 
 To change directory, use a directory name:
 
