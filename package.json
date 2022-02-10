@@ -1,7 +1,7 @@
 {
   "name": "chd",
   "version": "0.1.1",
-  "description": "Tool to make changing to frequently visited directories faster.",
+  "description": "Tool to make changing to frequently visited directories faster",
   "main": "src/chd.js",
   "repository": "https://github.com/zacharyedwardsdowns/chd.git",
   "author": "Zachary Edwards Downs",
@@ -17,6 +17,7 @@
     "@types/node-persist": "^3.1.2",
     "chalk": "^5.0.0",
     "commander": "^9.0.0",
+    "inquirer": "^8.2.0",
     "node-persist": "^3.1.0",
     "winston": "^3.5.1"
   }

@@ -20,8 +20,8 @@ export async function list() {
     await persist.init();
     chdList = await persist.data();
   } catch (error) {
-    console.error(chalk.red('Failed to list directories!'));
-    console.error(chalk.red('Check error.log for more details.'));
+    console.error(chalk.red('Failed to list directories'));
+    console.error(chalk.red('Check error.log for more details'));
     log.error(error);
     return;
   }
@@ -44,7 +44,7 @@ export async function list() {
 
     console.log(chalk.greenBright('---------------------'));
   } else {
-    console.log(chalk.yellow('No supported directories found!'));
+    console.log(chalk.yellow('No supported directories found'));
   }
 
   displayInvalidList(invalidList);
