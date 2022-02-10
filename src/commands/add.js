@@ -95,8 +95,7 @@ async function inquireDuplicate(name) {
     console.log('');
     return answer.existing !== 'Yes';
   } catch {
-    console.log(chalk.gray('\nFailed to load prompt'));
-    console.log(chalk.gray(`This directory already exists under '${name}'`));
+    console.log(chalk.gray('\nFailed to load prompt...\n'));
 
     return false;
   }

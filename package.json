@@ -1,6 +1,6 @@
 {
   "name": "chd",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Tool to make changing to frequently visited directories faster",
   "main": "src/chd.js",
   "repository": "https://github.com/zacharyedwardsdowns/chd.git",
