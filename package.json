@@ -1,10 +1,10 @@
 {
   "name": "chd-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/chd-node.js",
   "author": "Zachary Edwards Downs",
   "description": "Tool to make changing to frequently visited directories faster",
-  "repository": "https://github.com/zacharyedwardsdowns/chd.git",
+  "repository": "https://github.com/zacharyedwardsdowns/chd-node.git",
   "homepage": "https://github.com/zacharyedwardsdowns/chd-node#readme",
   "bugs": "https://github.com/zacharyedwardsdowns/chd-node/issues",
   "bin": "src/chd-node.js",
