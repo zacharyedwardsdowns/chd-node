@@ -5,13 +5,14 @@ import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
+import { userDataDir } from '../util/user-data.js';
 import { transports, createLogger, format } from 'winston';
 const { combine, timestamp, json } = format;
 
 const log = createLogger({
   format: combine(timestamp(), json()),
   transports: new transports.File({
-    filename: 'log/error.log',
+    filename: userDataDir() + '/log/error.log',
     level: 'error',
   }),
 });

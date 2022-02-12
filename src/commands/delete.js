@@ -1,19 +1,20 @@
 import chalk from 'chalk';
 import persist from 'node-persist';
+import { persistDir, userDataDir } from '../util/user-data.js';
 import { transports, createLogger, format } from 'winston';
 const { combine, timestamp, json } = format;
 
 const log = createLogger({
   format: combine(timestamp(), json()),
   transports: new transports.File({
-    filename: 'log/error.log',
+    filename: userDataDir() + '/log/error.log',
     level: 'error',
   }),
 });
 
 export async function deleteDirectory(name) {
   try {
-    await persist.init();
+    await persist.init({ dir: persistDir() });
     const details = await persist.removeItem(name);
     if (details.existed) {
       if (details.removed) {

@@ -1,16 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
-import persist from 'node-persist';
 import inquirer from 'inquirer';
+import persist from 'node-persist';
 import { commands } from '../chd-node.js';
+import { persistDir, userDataDir } from '../util/user-data.js';
 import { transports, createLogger, format } from 'winston';
 const { combine, timestamp, json } = format;
 
 const log = createLogger({
   format: combine(timestamp(), json()),
   transports: new transports.File({
-    filename: 'log/error.log',
+    filename: userDataDir() + '/log/error.log',
     level: 'error',
   }),
 });
@@ -41,7 +42,7 @@ async function addHelper(name, absolute) {
   let chdList = [];
 
   try {
-    await persist.init();
+    await persist.init({ dir: persistDir() });
     chdList = await persist.data();
   } catch (error) {
     logError(error);

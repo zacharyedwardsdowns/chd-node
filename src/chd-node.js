@@ -5,6 +5,7 @@ import { program } from 'commander';
 import { fileURLToPath } from 'url';
 import { add } from './commands/add.js';
 import { list } from './commands/list.js';
+import { userDataDir } from './util/user-data.js';
 import { changeDirectory } from './commands/cd.js';
 import { deleteDirectory } from './commands/delete.js';
 
@@ -34,7 +35,11 @@ program
   .action(deleteDirectory);
 program
   .argument('<name>')
-  .description('cd to the directory represented by name')
+  .description(
+    'cd to the directory represented by name\n\n- data directory -\n"' +
+      userDataDir() +
+      '"'
+  )
   .action(changeDirectory);
 
 program.parse();

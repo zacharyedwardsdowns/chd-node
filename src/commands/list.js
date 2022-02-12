@@ -1,13 +1,14 @@
 import fs from 'fs';
 import chalk from 'chalk';
 import persist from 'node-persist';
+import { persistDir, userDataDir } from '../util/user-data.js';
 import { transports, createLogger, format } from 'winston';
 const { combine, timestamp, json } = format;
 
 const log = createLogger({
   format: combine(timestamp(), json()),
   transports: new transports.File({
-    filename: 'log/error.log',
+    filename: userDataDir() + '/log/error.log',
     level: 'error',
   }),
 });
@@ -17,7 +18,7 @@ export async function list() {
   let chdList = [];
 
   try {
-    await persist.init();
+    await persist.init({ dir: persistDir() });
     chdList = await persist.data();
   } catch (error) {
     console.log(chalk.red('Failed to list directories'));
