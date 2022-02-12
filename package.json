@@ -1,5 +1,5 @@
 {
-  "name": "chd",
+  "name": "chd-node",
   "version": "1.0.0",
   "description": "Tool to make changing to frequently visited directories faster",
   "main": "src/chd.js",
@@ -7,11 +7,9 @@
   "author": "Zachary Edwards Downs",
   "license": "MIT",
   "type": "module",
-  "bin": {
-    "chd": "src/chd.js"
-  },
+  "bin": "src/chd.js",
   "scripts": {
-    "chd": "node src/chd.js"
+    "chd-node": "node src/chd.js"
   },
   "dependencies": {
     "@types/node-persist": "^3.1.2",
