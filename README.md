@@ -7,17 +7,17 @@ Then by using 'chd name' the terminal will change to the linked directory.
 
 Install using npm
 
-`npm install -g chd-node`
+`npm i -g chd-node`
 
 ### Uninstall
 
-Recommended to first run uninstall script to remove chd alias
+Recommended to first run uninstall to remove chd alias
 
-`npm run uninstall`
+`chd uninstall`
 
 Then uninstall using npm
 
-`npm uninstall -g chd-node`
+`npm un -g chd-node`
 
 ### Usage
 

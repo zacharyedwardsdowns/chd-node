@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { add } from './commands/add.js';
 import { list } from './commands/list.js';
 import { userDataDir } from './util/user-data.js';
+import { uninstall } from './install/uninstall.js';
 import { changeDirectory } from './commands/cd.js';
 import { deleteDirectory } from './commands/delete.js';
 
@@ -33,6 +34,10 @@ program
   .command('delete <name>')
   .description('delete name from supported directories')
   .action(deleteDirectory);
+program
+  .command('uninstall')
+  .description('remove aliases added by postinstall')
+  .action(uninstall);
 program
   .argument('<name>')
   .description(
