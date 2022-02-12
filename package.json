@@ -1,22 +1,28 @@
 {
   "name": "chd-node",
   "version": "1.0.0",
-  "description": "Tool to make changing to frequently visited directories faster",
-  "main": "src/chd.js",
-  "repository": "https://github.com/zacharyedwardsdowns/chd.git",
+  "main": "src/chd-node.js",
   "author": "Zachary Edwards Downs",
+  "description": "Tool to make changing to frequently visited directories faster",
+  "repository": "https://github.com/zacharyedwardsdowns/chd.git",
+  "homepage": "https://github.com/zacharyedwardsdowns/chd-node#readme",
+  "bugs": "https://github.com/zacharyedwardsdowns/chd-node/issues",
+  "bin": "src/chd-node.js",
   "license": "MIT",
   "type": "module",
-  "bin": "src/chd.js",
   "scripts": {
-    "chd-node": "node src/chd.js"
+    "chd-node": "node src/chd-node.js",
+    "postinstall": "node src/install/postinstall.js",
+    "uninstall": "node src/install/uninstall.js"
   },
   "dependencies": {
-    "@types/node-persist": "^3.1.2",
     "chalk": "^5.0.0",
     "commander": "^9.0.0",
     "inquirer": "^8.2.0",
     "node-persist": "^3.1.0",
     "winston": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/node-persist": "^3.1.2"
   }
 }

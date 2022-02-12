@@ -29,8 +29,8 @@ export async function changeDirectory(name) {
 
     console.log(directory);
   } catch (error) {
-    console.error(chalk.red('Failed to list directories'));
-    console.error(chalk.red('Check error.log for more details'));
+    console.log(chalk.red('Failed to list directories'));
+    console.log(chalk.red('Check error.log for more details'));
     log.error(error);
     return;
   }

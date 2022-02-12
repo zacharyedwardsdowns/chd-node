@@ -3,9 +3,21 @@
 A command line tool to make changing to frequently visited directories faster by allowing the user to link it to a name.
 Then by using 'chd name' the terminal will change to the linked directory.
 
-### Installation
+### Install
 
-Currently non-installable
+Install using npm
+
+`npm install -g chd`
+
+### Uninstall
+
+Recommended to first run uninstall script to remove chd alias
+
+`npm run uninstall`
+
+Then uninstall using npm
+
+`npm uninstall -g chd`
 
 ### Usage
 
@@ -33,6 +45,10 @@ To delete an existing linked directory use:
 
 `chd delete name`
 
-###### Note:
+#### Original
+
+This is a Node.js implementation of the chd shell project: https://github.com/zacharyedwardsdowns/chd
+
+#### Note
 
 More than one directory name is allowed to point to a single directory, however each directory name must be unique.

@@ -1,9 +1,16 @@
-commands=('list', 'add', 'delete')
+#!/usr/bin/env bash
 
-if [[ " ${commands[*]} " =~ " $1 " ]]; then
-  node chd.js $1 $2 $3
+dir="$(dirname -- "${BASH_SOURCE[0]}")"
+
+if [ "$1" == "list" ] || [ "$1" == "add" ] || [ "$1" == "delete" ]; then
+  node "$dir/chd-node.js" "$1" "$2" "$3"
 else
-  result=$(node.exe chd.js $1)
+  # Run using .exe if Windows.
+  if [ "$OSTYPE" == "msys" ]; then
+    result=$(node.exe "$dir/chd-node.js" "$1")
+  else
+    result=$(node "$dir/chd-node.js" "$1")
+  fi
   if [ -d "$result" ]; then
     cd "$result"
   else

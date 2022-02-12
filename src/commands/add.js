@@ -3,7 +3,7 @@ import path from 'path';
 import chalk from 'chalk';
 import persist from 'node-persist';
 import inquirer from 'inquirer';
-import { commands } from '../chd.js';
+import { commands } from '../chd-node.js';
 import { transports, createLogger, format } from 'winston';
 const { combine, timestamp, json } = format;
 
@@ -102,7 +102,7 @@ async function inquireDuplicate(name) {
 }
 
 function logError(error) {
-  console.error(chalk.red('Failed to add directory'));
-  console.error(chalk.red('Check error.log for more details'));
+  console.log(chalk.red('Failed to add directory'));
+  console.log(chalk.red('Check error.log for more details'));
   log.error(error);
 }

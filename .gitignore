@@ -2,3 +2,4 @@ node_modules
 .vscode
 .node-persist
 log
+yarn-error.log

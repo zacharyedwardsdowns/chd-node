@@ -33,8 +33,8 @@ export async function deleteDirectory(name) {
       );
     }
   } catch (error) {
-    console.error(chalk.red('Failed to delete directory'));
-    console.error(chalk.red('Check error.log for more details'));
+    console.log(chalk.red('Failed to delete directory'));
+    console.log(chalk.red('Check error.log for more details'));
     log.error(error);
     return;
   }
