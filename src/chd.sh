@@ -12,7 +12,9 @@ if [ -z "$directory" ] || [ "$directory" == "." ]; then
   directory=$(readlink --canonicalize "$PWD")
 fi
 
-if [ "$command" == "list" ] || [ "$command" == "add" ] || [ "$command" == "delete" ]; then
+declare -A commands=([add]=0, [list]=2, [delete]=3, [uninstall]=4)
+
+if [[ -v commands["$command"] ]]; then
   if [ -z "$name" ]; then
     node "$chd" "$command"
   elif [ -z "$directory" ]; then

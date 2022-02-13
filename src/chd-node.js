@@ -10,7 +10,7 @@ import { uninstall } from './install/uninstall.js';
 import { changeDirectory } from './commands/cd.js';
 import { deleteDirectory } from './commands/delete.js';
 
-export const commands = ['list', 'add', 'delete'];
+export const commands = ['list', 'add', 'delete', 'uninstall'];
 
 // Ensure the script always runs in the chd project directory.
 let replace;

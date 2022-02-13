@@ -35,15 +35,15 @@ export async function list() {
   });
 
   if (chdList && chdList.length) {
-    console.log(chalk.greenBright('---------------------'));
-    console.log(chalk.greenBright('Supported Directories'));
-    console.log(chalk.greenBright('---------------------'));
+    console.log(chalk.greenBright('-----------------------'));
+    console.log(chalk.greenBright(' Supported Directories '));
+    console.log(chalk.greenBright('-----------------------'));
 
     chdList.forEach((item) => {
       console.log(chalk.blue(item.key), item.value);
     });
 
-    console.log(chalk.greenBright('---------------------'));
+    console.log(chalk.greenBright('-----------------------'));
   } else {
     console.log(chalk.yellowBright('No supported directories found'));
   }
@@ -55,14 +55,14 @@ function displayInvalidList(invalidList) {
   if (invalidList && invalidList.length) {
     console.log('');
 
-    console.log(chalk.yellowBright('-------------------'));
-    console.log(chalk.yellowBright('Invalid Directories'));
-    console.log(chalk.yellowBright('-------------------'));
+    console.log(chalk.yellowBright('-----------------------'));
+    console.log(chalk.yellowBright('  Invalid Directories  '));
+    console.log(chalk.yellowBright('-----------------------'));
 
     invalidList.forEach((item) => {
       console.log(chalk.red(item.key), item.value);
     });
 
-    console.log(chalk.yellowBright('-------------------'));
+    console.log(chalk.yellowBright('-----------------------'));
   }
 }
