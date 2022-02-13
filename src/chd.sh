@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export FORCE_COLOR="1"
 
 result=""
 command="$1"

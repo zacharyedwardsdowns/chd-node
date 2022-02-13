@@ -47,7 +47,7 @@ To delete an existing linked directory use:
 
 #### Original
 
-This is a Node.js implementation of the chd shell project: https://github.com/zacharyedwardsdowns/chd
+This is a Node.js implementation of the shell project:<br>https://github.com/zacharyedwardsdowns/chd
 
 #### Note
 
