@@ -26,12 +26,12 @@ export async function add(name, directory) {
   if (fs.existsSync(directory)) {
     absolute = path.resolve(directory);
   } else {
-    console.log(chalk.yellow('Must provide a valid directory'));
+    console.log(chalk.yellowBright('Must provide a valid directory'));
     return;
   }
 
   if (commands.includes(name)) {
-    console.log(chalk.yellow('Name cannot be an existing chd command'));
+    console.log(chalk.yellowBright('Name cannot be an existing chd command'));
     console.log(chalk.gray('Commands:'), chalk.gray(...commands));
   }
 
@@ -54,7 +54,7 @@ async function addHelper(name, absolute) {
 
     for (const item of chdList) {
       if (item.key === name) {
-        console.log(chalk.yellow(`The name '${name}' already exists`));
+        console.log(chalk.yellowBright(`The name '${name}' already exists`));
         doReturn = true;
       } else if (item.value === absolute) {
         doReturn = await inquireDuplicate(item.key);
@@ -81,7 +81,9 @@ async function addHelper(name, absolute) {
 }
 
 async function inquireDuplicate(name) {
-  console.log(chalk.yellow(`This directory already exists under '${name}'\n`));
+  console.log(
+    chalk.yellowBright(`This directory already exists under '${name}'\n`)
+  );
 
   try {
     const answer = await inquirer.prompt([

@@ -28,7 +28,7 @@ export async function deleteDirectory(name) {
       }
     } else {
       console.log(
-        chalk.yellow(
+        chalk.yellowBright(
           `No directory named '${name}' exists so nothing was deleted`
         )
       );

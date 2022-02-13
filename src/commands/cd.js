@@ -19,12 +19,14 @@ export async function changeDirectory(name) {
     const directory = await persist.getItem(name);
 
     if (!directory) {
-      console.log(chalk.yellow(`No directory named '${name}' exists`));
+      console.log(chalk.yellowBright(`No directory named '${name}' exists`));
       return;
     }
 
     if (!fs.existsSync(directory)) {
-      console.log(chalk.yellow(`The directory '${directory}' does not exist`));
+      console.log(
+        chalk.yellowBright(`The directory '${directory}' does not exist`)
+      );
       return;
     }
 
