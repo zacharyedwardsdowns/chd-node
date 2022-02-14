@@ -8,8 +8,11 @@ param([string]$command, [string]$name, [string]$directory)
 [string] $chdDir = "$PSScriptRoot".Remove($index, $remove);
 [string] $chd = "$chdDir\chd-node.js"
 
-if ( $directory -eq "" -or $directory -eq "." ) {
+if ( $directory -eq "") {
   $directory = $PWD
+}
+else {
+  $directory = Resolve-Path $directory
 }
 
 if ( $commands -contains $command ) {

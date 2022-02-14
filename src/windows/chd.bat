@@ -3,10 +3,9 @@
 SET result=""
 SET command="%~1"
 SET name="%~2"
-SET directory="%~3"
+SET directory="%~f3"
 
 IF %directory% == "" SET directory=%CD%
-IF %directory% == "." SET directory=%CD%
 
 SET program_command=""
 IF %command% == "add" SET program_command="true"

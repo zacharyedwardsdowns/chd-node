@@ -8,8 +8,10 @@ directory="$3"
 
 chd="$(dirname -- "${BASH_SOURCE[0]}")/chd-node.js"
 
-if [ -z "$directory" ] || [ "$directory" == "." ]; then
+if [ -z "$directory" ]; then
   directory=$(readlink --canonicalize "$PWD")
+else
+  directory=$(readlink --canonicalize "$directory")
 fi
 
 declare -A commands=([add]=0, [list]=2, [delete]=3, [uninstall]=4)
