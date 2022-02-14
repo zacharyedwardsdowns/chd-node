@@ -23,7 +23,7 @@ Then uninstall using npm
 
 A usage guide can be found using:
 
-`chd --help`
+`chd help`
 
 To change directory, use a directory name:
 
@@ -41,9 +41,17 @@ To add onto your list of linked directories use:
 
 `chd add name directory`
 
+To rename an existing linked directory use:
+
+`chd rename name`
+
 To delete an existing linked directory use:
 
 `chd delete name`
+
+Installation instructions for Command Prompt and Powershell:
+
+`chd windows`
 
 #### Original
 

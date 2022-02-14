@@ -1,7 +1,7 @@
 param([string]$command, [string]$name, [string]$directory)
 
-[string[]] $commands = @('add', 'list', 'delete', 'uninstall')
-[string] $result = "" 
+[string[]] $commands = @('add', 'list', 'delete', 'uninstall', 'windows', 'help', 'rename')
+[string] $result = ""
 
 [int32] $index = "$PSScriptRoot".LastIndexOf("\")
 [int32] $remove = "$PSScriptRoot".Length - "$PSScriptRoot".LastIndexOf("\")

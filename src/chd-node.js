@@ -5,12 +5,22 @@ import { program } from 'commander';
 import { fileURLToPath } from 'url';
 import { add } from './commands/add.js';
 import { list } from './commands/list.js';
+import { rename } from './commands/rename.js';
 import { userDataDir } from './util/user-data.js';
 import { uninstall } from './install/uninstall.js';
 import { changeDirectory } from './commands/cd.js';
 import { deleteDirectory } from './commands/delete.js';
+import { windowsInstructions } from './commands/windows.js';
 
-export const commands = ['list', 'add', 'delete', 'uninstall'];
+export const commands = [
+  'list',
+  'add',
+  'delete',
+  'uninstall',
+  'windows',
+  'help',
+  'rename',
+];
 
 // Ensure the script always runs in the chd project directory.
 let replace;
@@ -22,6 +32,7 @@ if (process.platform === 'win32') {
 const dir = path.dirname(fileURLToPath(import.meta.url));
 process.chdir(dir.substring(0, dir.lastIndexOf(replace)));
 
+program.addHelpCommand();
 program
   .command('list')
   .description('list all directories and their names')
@@ -31,9 +42,17 @@ program
   .description('add given/current directory under name')
   .action(add);
 program
+  .command('rename <name>')
+  .description('rename an existing directory')
+  .action(rename);
+program
   .command('delete <name>')
-  .description('delete name from supported directories')
+  .description('delete name from directories list')
   .action(deleteDirectory);
+program
+  .command('windows')
+  .description('provides installation instructions for windows')
+  .action(windowsInstructions);
 program
   .command('uninstall')
   .description('remove aliases added by postinstall')

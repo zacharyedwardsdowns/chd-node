@@ -9,8 +9,11 @@ IF %directory% == "" SET directory=%CD%
 
 SET program_command=""
 IF %command% == "add" SET program_command="true"
+IF %command% == "help" SET program_command="true"
 IF %command% == "list" SET program_command="true"
 IF %command% == "delete" SET program_command="true"
+IF %command% == "rename" SET program_command="true"
+IF %command% == "windows" SET program_command="true"
 IF %command% == "uninstall" SET program_command="true"
 
 IF %program_command% == "true" (

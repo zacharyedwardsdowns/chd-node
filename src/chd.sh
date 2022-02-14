@@ -14,7 +14,7 @@ else
   directory=$(readlink --canonicalize "$directory")
 fi
 
-declare -A commands=([add]=0, [list]=2, [delete]=3, [uninstall]=4)
+declare -A commands=([add]=0, [list]=2, [delete]=3, [uninstall]=4, [windows]=5, [help]=6, [rename]=7)
 
 if [[ -v commands["$command"] ]]; then
   if [ -z "$name" ]; then
