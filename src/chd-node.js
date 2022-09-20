@@ -58,7 +58,7 @@ program
   .description('remove aliases added by postinstall')
   .action(uninstall);
 program
-  .argument('<name>')
+  .argument('[name]')
   .description(
     'cd to the directory represented by name\n\n- data directory -\n"' +
       userDataDir() +

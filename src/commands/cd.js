@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import persist from 'node-persist';
 import { persistDir, userDataDir } from '../util/user-data.js';
 import { transports, createLogger, format } from 'winston';
+import { program } from 'commander';
 const { combine, timestamp, json } = format;
 
 const log = createLogger({
@@ -14,6 +15,12 @@ const log = createLogger({
 });
 
 export async function changeDirectory(name) {
+  if (!name) {
+    program.outputHelp();
+    console.log(chalk.red("\nPlease provide a named directory 'chd <name>'"));
+    return;
+  }
+
   try {
     await persist.init({ dir: persistDir() });
     const directory = await persist.getItem(name);
