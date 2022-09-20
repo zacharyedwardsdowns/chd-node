@@ -6,10 +6,10 @@ import persist from 'node-persist';
 import { commands } from '../chd-node.js';
 import { persistDir, userDataDir } from '../util/user-data.js';
 import { transports, createLogger, format } from 'winston';
-const { combine, timestamp, json } = format;
+const { combine, timestamp, json, errors } = format;
 
 const log = createLogger({
-  format: combine(timestamp(), json()),
+  format: combine(timestamp(), errors({ stack: true }), json()),
   transports: new transports.File({
     filename: userDataDir() + '/log/error.log',
     level: 'error',
@@ -17,25 +17,29 @@ const log = createLogger({
 });
 
 export async function add(name, directory) {
-  let absolute;
+  if (commands.includes(name)) {
+    console.log(chalk.yellowBright('Name cannot be an existing chd command'));
+    console.log(chalk.gray('Commands:'), chalk.gray(...commands));
+    return;
+  }
+
+  if (name.includes('\\') || name.includes('/')) {
+    console.log(
+      chalk.yellowBright("Name cannot include the characters '\\' or '/'")
+    );
+    return;
+  }
 
   if (!directory) {
     directory = process.cwd();
   }
 
-  if (fs.existsSync(directory)) {
-    absolute = path.resolve(directory);
-  } else {
+  if (!fs.existsSync(directory)) {
     console.log(chalk.yellowBright('Must provide a valid directory'));
     return;
   }
 
-  if (commands.includes(name)) {
-    console.log(chalk.yellowBright('Name cannot be an existing chd command'));
-    console.log(chalk.gray('Commands:'), chalk.gray(...commands));
-  }
-
-  return addHelper(name, absolute);
+  return addHelper(name, path.resolve(directory));
 }
 
 async function addHelper(name, absolute) {

@@ -3,10 +3,10 @@ import fs from 'fs';
 import chalk from 'chalk';
 import { userDataDir } from '../util/user-data.js';
 import { transports, createLogger, format } from 'winston';
-const { combine, timestamp, json } = format;
+const { combine, timestamp, json, errors } = format;
 
 const log = createLogger({
-  format: combine(timestamp(), json()),
+  format: combine(timestamp(), errors({ stack: true }), json()),
   transports: new transports.File({
     filename: userDataDir() + '/log/error.log',
     level: 'error',
