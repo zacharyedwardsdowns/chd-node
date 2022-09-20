@@ -60,7 +60,7 @@ program
 program
   .argument('[name]')
   .description(
-    'cd to the directory represented by name\n\n- data directory -\n"' +
+    'cd to the directory represented by name\ncd to the subdirectory represented by name/sub-directory\n\n- data directory -\n"' +
       userDataDir() +
       '"'
   )

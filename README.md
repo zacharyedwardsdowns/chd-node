@@ -29,6 +29,10 @@ To change directory, use a directory name:
 
 `chd name`
 
+To change to a sub directory, use a directory name + /sub-directory:
+
+`chd name/sub-directory`
+
 To get a list of your linked directories use:
 
 `chd list`
