@@ -1,17 +1,8 @@
 import fs from 'fs';
 import chalk from 'chalk';
+import { log } from '../chd-node.js';
 import persist from 'node-persist';
-import { persistDir, userDataDir } from '../util/user-data.js';
-import { transports, createLogger, format } from 'winston';
-const { combine, timestamp, json, errors } = format;
-
-const log = createLogger({
-  format: combine(timestamp(), errors({ stack: true }), json()),
-  transports: new transports.File({
-    filename: userDataDir() + '/log/error.log',
-    level: 'error',
-  }),
-});
+import { persistDir } from '../util/user-data.js';
 
 export async function list() {
   const invalidList = [];

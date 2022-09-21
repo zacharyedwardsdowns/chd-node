@@ -1,18 +1,9 @@
 import fs from 'fs';
 import chalk from 'chalk';
 import persist from 'node-persist';
-import { persistDir, userDataDir } from '../util/user-data.js';
-import { transports, createLogger, format } from 'winston';
 import { program } from 'commander';
-const { combine, timestamp, json, errors } = format;
-
-const log = createLogger({
-  format: combine(timestamp(), errors({ stack: true }), json()),
-  transports: new transports.File({
-    filename: userDataDir() + '/log/error.log',
-    level: 'error',
-  }),
-});
+import { log } from '../chd-node.js';
+import { persistDir } from '../util/user-data.js';
 
 const slash = process.platform === 'win32' ? '\\' : '/';
 
