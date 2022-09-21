@@ -20,11 +20,7 @@ export async function add(name, directory) {
     return;
   }
 
-  if (!directory) {
-    directory = process.cwd();
-  }
-
-  if (!fs.existsSync(directory)) {
+  if (!directory || !fs.existsSync(directory)) {
     console.log(chalk.yellowBright('Must provide a valid directory'));
     return;
   }
