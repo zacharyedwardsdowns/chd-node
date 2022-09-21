@@ -1,6 +1,6 @@
 {
   "name": "chd-node",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "main": "src/chd-node.js",
   "author": "Zachary Edwards Downs",
   "description": "Tool to make changing to frequently visited directories faster",
