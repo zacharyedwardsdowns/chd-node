@@ -2,6 +2,10 @@ import path from 'path';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
 
+/*
+FNM COMMAND PROMPT
+FOR /f "tokens=*" %i IN ('fnm env --use-on-cd') DO CALL %
+ */
 export function windowsInstructions() {
   if (process.platform !== 'win32') {
     console.log(chalk.yellowBright('Not running windows'));
