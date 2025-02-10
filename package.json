@@ -1,6 +1,6 @@
 {
   "name": "chd-node",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "main": "src/chd-node.js",
   "author": "Zachary Edwards Downs",
   "description": "Tool to make changing to frequently visited directories faster",
@@ -12,8 +12,7 @@
   "type": "module",
   "scripts": {
     "chd-node": "node src/chd-node.js",
-    "postinstall": "node src/install/postinstall.js",
-    "uninstall": "node src/chd-node.js uninstall"
+    "postinstall": "node src/install/postinstall.js"
   },
   "dependencies": {
     "chalk": "^5.0.0",

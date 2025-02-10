@@ -7,7 +7,6 @@ import { add } from './commands/add.js';
 import { list } from './commands/list.js';
 import { rename } from './commands/rename.js';
 import { userDataDir } from './util/user-data.js';
-import { uninstall } from './install/uninstall.js';
 import { changeDirectory } from './commands/cd.js';
 import { deleteDirectory } from './commands/delete.js';
 import { windowsInstructions } from './commands/windows.js';
@@ -57,16 +56,8 @@ program
   .action(rename);
 program
   .command('delete <name>')
-  .description('delete name from directories list')
+  .description('deletes name from directories list')
   .action(deleteDirectory);
-program
-  .command('windows')
-  .description('provides installation instructions for windows')
-  .action(windowsInstructions);
-program
-  .command('uninstall')
-  .description('remove aliases added by postinstall')
-  .action(uninstall);
 program
   .argument('[name]')
   .description(
@@ -75,5 +66,12 @@ program
       '"'
   )
   .action(changeDirectory);
+
+if (process.platform === 'win32') {
+  program
+    .command('windows')
+    .description('provides installation instructions for windows')
+    .action(windowsInstructions);
+}
 
 program.parse();
