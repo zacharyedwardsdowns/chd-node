@@ -16,7 +16,7 @@ export async function rename(name) {
     return;
   }
 
-  if (chdList && chdList.length) {
+  if (chdList?.length) {
     let found = false;
 
     for (const item of chdList) {

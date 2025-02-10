@@ -28,6 +28,5 @@ export async function deleteDirectory(name) {
     console.log(chalk.red('Failed to delete directory'));
     console.log(chalk.red('Check error.log for more details'));
     log.error(error);
-    return;
   }
 }

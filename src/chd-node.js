@@ -41,7 +41,7 @@ if (process.platform === 'win32') {
 const dir = path.dirname(fileURLToPath(import.meta.url));
 process.chdir(dir.substring(0, dir.lastIndexOf(replace)));
 
-program.addHelpCommand();
+program.helpCommand(true);
 program
   .command('list')
   .description('list all directories and their names')

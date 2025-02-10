@@ -25,7 +25,7 @@ export async function list() {
     }
   });
 
-  if (chdList && chdList.length) {
+  if (chdList?.length) {
     console.log(chalk.greenBright('-----------------------'));
     console.log(chalk.greenBright(' Supported Directories '));
     console.log(chalk.greenBright('-----------------------'));
@@ -43,7 +43,7 @@ export async function list() {
 }
 
 function displayInvalidList(invalidList) {
-  if (invalidList && invalidList.length) {
+  if (invalidList?.length) {
     console.log('');
 
     console.log(chalk.yellowBright('-----------------------'));

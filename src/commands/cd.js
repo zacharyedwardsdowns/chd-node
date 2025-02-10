@@ -18,7 +18,7 @@ export async function changeDirectory(name) {
 
   if (name.includes('\\') || name.includes('/')) {
     if (process.platform === 'win32' && name.includes('/')) {
-      name = name.replace(new RegExp('/', 'g'), '\\');
+      name = name.replace(/\//g, '\\');
     }
 
     const index = name.indexOf(slash);
@@ -49,6 +49,5 @@ export async function changeDirectory(name) {
     console.log(chalk.red('Failed to cd to the given directory!'));
     console.log(chalk.red('Check error.log for more details'));
     log.error(error);
-    return;
   }
 }

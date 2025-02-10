@@ -39,7 +39,7 @@ async function addHelper(name, absolute) {
     return;
   }
 
-  if (chdList && chdList.length) {
+  if (chdList?.length) {
     let doReturn = false;
 
     for (const item of chdList) {
