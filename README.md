@@ -3,21 +3,31 @@
 A command line tool to make changing to frequently visited directories faster by allowing the user to link it to a name.
 Then by using 'chd name' the terminal will change to the linked directory.
 
+---
+
 ### Install
 
 Install using npm
 
 `npm i -g chd-node`
 
+It should then prompt you to add an alias for chd
+
+Alias instructions for CMD and Powershell on Windows
+
+`chd-node windows`
+
+---
+
 ### Uninstall
 
-Recommended to first run uninstall to remove chd alias
-
-`chd uninstall`
-
-Then uninstall using npm
+Uninstall using npm
 
 `npm un -g chd-node`
+
+Then remove the chd alias from your alias file
+
+---
 
 ### Usage
 
@@ -29,7 +39,7 @@ To change directory, use a directory name:
 
 `chd name`
 
-To change to a sub directory, use a directory name + /sub-directory:
+To change to a subdirectory, use a directory name + /subdirectory:
 
 `chd name/sub-directory`
 
@@ -53,9 +63,13 @@ To delete an existing linked directory use:
 
 `chd delete name`
 
+#### Windows Only Commands
+
 Installation instructions for Command Prompt and Powershell:
 
 `chd windows`
+
+---
 
 #### Original
 
