@@ -1,40 +1,26 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import persist from 'node-persist';
 import { commands, log } from '../chd-node.js';
-import { persistDir } from '../util/user-data.js';
+import { renameKeyInList, retrieveFromList } from '../util/db.js';
 
 export async function rename(name) {
-  let chdList = [];
   let directory;
 
   try {
-    await persist.init({ dir: persistDir() });
-    chdList = await persist.data();
+    directory = retrieveFromList(name);
   } catch (error) {
     logError(error);
     return;
   }
 
-  if (chdList?.length) {
-    let found = false;
-
-    for (const item of chdList) {
-      if (item.key === name) {
-        directory = item.value;
-        found = true;
-      }
-    }
-
-    if (!found) {
-      console.log(
-        chalk.yellowBright(`No directory named '${name}' exists to be renamed`)
-      );
-      return;
-    }
+  if (!directory) {
+    console.log(
+      chalk.yellowBright(`No directory named '${name}' exists to be renamed`)
+    );
+    return;
   }
 
-  renameHelper(name, directory);
+  await renameHelper(directory.name, directory.path);
 }
 
 async function renameHelper(name, directory) {
@@ -52,8 +38,12 @@ async function renameHelper(name, directory) {
     console.log(chalk.gray('Commands:'), chalk.gray(...commands));
   } else {
     try {
-      await persist.removeItem(name);
-      await persist.setItem(newName, directory);
+      if (retrieveFromList(newName)) {
+        console.log(chalk.yellowBright(`The name '${newName}' already exists`));
+        return;
+      } else {
+        renameKeyInList(name, newName);
+      }
     } catch (error) {
       logError(error, directory);
       return;
@@ -70,8 +60,8 @@ async function inquireName() {
       {
         name: 'new',
         message: 'Provide a new directory name:',
-        type: 'input',
-      },
+        type: 'input'
+      }
     ]);
 
     console.log('');

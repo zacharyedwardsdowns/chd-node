@@ -8,10 +8,10 @@ export function userDataDir() {
   }
 }
 
-export function persistDir() {
+export function databaseFile() {
   if (process.platform === 'win32') {
-    return userDataDir() + '\\chdlist';
+    return userDataDir() + '\\chd.db';
   } else {
-    return userDataDir() + '/chdlist';
+    return userDataDir() + '/chd.db';
   }
 }

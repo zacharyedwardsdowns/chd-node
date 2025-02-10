@@ -1,14 +1,14 @@
 import chalk from 'chalk';
-import persist from 'node-persist';
 import { log } from '../chd-node.js';
-import { persistDir } from '../util/user-data.js';
+import { deleteFromList, retrieveFromList } from '../util/db.js';
 
 export async function deleteDirectory(name) {
   try {
-    await persist.init({ dir: persistDir() });
-    const details = await persist.removeItem(name);
-    if (details.existed) {
-      if (details.removed) {
+    const directory = retrieveFromList(name);
+
+    if (directory) {
+      const details = deleteFromList(name)
+      if (details.changes) {
         console.log(
           chalk.greenBright(`Deleted '${name}' from supported directories.`)
         );

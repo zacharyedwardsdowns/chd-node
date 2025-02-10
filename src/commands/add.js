@@ -2,9 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import persist from 'node-persist';
 import { commands, log } from '../chd-node.js';
-import { persistDir } from '../util/user-data.js';
+import { addToList, retrieveFromList, retrieveFromListByPath } from '../util/db.js';
 
 export async function add(name, directory) {
   if (commands.includes(name)) {
@@ -15,7 +14,7 @@ export async function add(name, directory) {
 
   if (name.includes('\\') || name.includes('/')) {
     console.log(
-      chalk.yellowBright("Name cannot include the characters '\\' or '/'")
+      chalk.yellowBright('Name cannot include the characters \'\\\' or \'/\'')
     );
     return;
   }
@@ -29,37 +28,39 @@ export async function add(name, directory) {
 }
 
 async function addHelper(name, absolute) {
-  let chdList = [];
+  let doReturn = false;
+  let directory;
 
   try {
-    await persist.init({ dir: persistDir() });
-    chdList = await persist.data();
+    directory = retrieveFromList(name);
   } catch (error) {
     logError(error);
     return;
   }
 
-  if (chdList?.length) {
-    let doReturn = false;
-
-    for (const item of chdList) {
-      if (item.key === name) {
-        console.log(chalk.yellowBright(`The name '${name}' already exists`));
-        doReturn = true;
-      } else if (item.value === absolute) {
-        doReturn = await inquireDuplicate(item.key);
-        break;
-      }
+  if (directory) {
+    console.log(chalk.yellowBright(`The name '${name}' already exists`));
+    doReturn = true;
+  } else  {
+    try {
+      directory = retrieveFromListByPath(absolute);
+    } catch (error) {
+      logError(error);
+      return;
     }
 
-    if (doReturn) {
-      console.log(chalk.gray('Directory was not added'));
-      return;
+    if (directory) {
+      doReturn = await inquireDuplicate(directory.name);
     }
   }
 
+  if (doReturn) {
+    console.log(chalk.gray('Directory was not added'));
+    return;
+  }
+
   try {
-    await persist.setItem(name, absolute);
+    addToList(name, absolute);
   } catch (error) {
     logError(error);
     return;
@@ -81,8 +82,8 @@ async function inquireDuplicate(name) {
         name: 'existing',
         message: 'Would you like to have it under both names?',
         type: 'list',
-        choices: ['Yes', 'No'],
-      },
+        choices: ['Yes', 'No']
+      }
     ]);
 
     console.log('');

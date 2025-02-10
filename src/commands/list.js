@@ -1,16 +1,14 @@
 import fs from 'fs';
 import chalk from 'chalk';
 import { log } from '../chd-node.js';
-import persist from 'node-persist';
-import { persistDir } from '../util/user-data.js';
+import { retrieveEntireList } from '../util/db.js';
 
 export async function list() {
   const invalidList = [];
   let chdList = [];
 
   try {
-    await persist.init({ dir: persistDir() });
-    chdList = await persist.data();
+    chdList = retrieveEntireList();
   } catch (error) {
     console.log(chalk.red('Failed to list directories'));
     console.log(chalk.red('Check error.log for more details'));
@@ -18,8 +16,8 @@ export async function list() {
     return;
   }
 
-  chdList.forEach((item, index) => {
-    if (!fs.existsSync(item.value)) {
+  chdList?.forEach((item, index) => {
+    if (!fs.existsSync(item.path)) {
       chdList.splice(index, 1);
       invalidList.push(item);
     }
@@ -31,7 +29,7 @@ export async function list() {
     console.log(chalk.greenBright('-----------------------'));
 
     chdList.forEach((item) => {
-      console.log(chalk.blue(item.key), item.value);
+      console.log(chalk.blue(item.name), item.path);
     });
 
     console.log(chalk.greenBright('-----------------------'));
@@ -51,7 +49,7 @@ function displayInvalidList(invalidList) {
     console.log(chalk.yellowBright('-----------------------'));
 
     invalidList.forEach((item) => {
-      console.log(chalk.red(item.key), item.value);
+      console.log(chalk.red(item.name), item.path);
     });
 
     console.log(chalk.yellowBright('-----------------------'));

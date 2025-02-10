@@ -1,6 +1,6 @@
 node_modules
 .vscode
-.node-persist
+chd.db
 log
 yarn-error.log
 .idea

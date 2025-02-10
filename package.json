@@ -1,6 +1,6 @@
 {
   "name": "chd-node",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "main": "src/chd-node.js",
   "author": "Zachary Edwards Downs",
   "description": "Tool to make changing to frequently visited directories faster",
@@ -20,7 +20,7 @@
     "config": "^3.3.12",
     "inquirer": "^12.4.1",
     "node-fetch": "^3.3.2",
-    "node-persist": "^4.0.4",
+    "better-sqlite3": "^11.8.1",
     "open": "^10.1.0",
     "winston": "^3.17.0"
   }
