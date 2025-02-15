@@ -1,0 +1,12 @@
+{
+  "db": {
+    "type": "postgres",
+    "host": "192.168.50.109",
+    "port": "5432",
+    "database": "chd",
+    "schema": "public",
+    "table": "holo",
+    "username": "chd",
+    "password": "9gGnS7aH4k3CFrEszwMp8EBDxqkFkFaWymB7hQrtmRRQ8MG2u7XK3hVBQ1mJErp9"
+  }
+}

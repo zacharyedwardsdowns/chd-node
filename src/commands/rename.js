@@ -1,26 +1,30 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import { commands, log } from '../chd-node.js';
-import { renameKeyInList, retrieveFromList } from '../util/db.js';
+import { close, renameKeyInList, retrieveFromList } from '../db/db.js';
 
 export async function rename(name) {
-  let directory;
-
   try {
-    directory = retrieveFromList(name);
-  } catch (error) {
-    logError(error);
-    return;
-  }
+    let directory;
 
-  if (!directory) {
-    console.log(
-      chalk.yellowBright(`No directory named '${name}' exists to be renamed`)
-    );
-    return;
-  }
+    try {
+      directory = await retrieveFromList(name);
+    } catch (error) {
+      logError(error);
+      return;
+    }
 
-  await renameHelper(directory.name, directory.path);
+    if (!directory) {
+      console.log(
+        chalk.yellowBright(`No directory named '${name}' exists to be renamed`),
+      );
+      return;
+    }
+
+    await renameHelper(directory.name, directory.path);
+  } finally {
+    close();
+  }
 }
 
 async function renameHelper(name, directory) {
@@ -31,25 +35,25 @@ async function renameHelper(name, directory) {
     console.log(chalk.red('Consider deleting then re-adding the directory'));
   } else if (!newName) {
     console.log(
-      chalk.yellowBright('Must provide a name to rename a directory')
+      chalk.yellowBright('Must provide a name to rename a directory'),
     );
   } else if (commands.includes(newName)) {
     console.log(chalk.yellowBright('Name cannot be an existing chd command'));
     console.log(chalk.gray('Commands:'), chalk.gray(...commands));
   } else {
     try {
-      if (retrieveFromList(newName)) {
+      if (await retrieveFromList(newName)) {
         console.log(chalk.yellowBright(`The name '${newName}' already exists`));
         return;
       } else {
-        renameKeyInList(name, newName);
+        await renameKeyInList(name, newName);
       }
     } catch (error) {
       logError(error, directory);
       return;
     }
     console.log(
-      chalk.greenBright(`Renamed '${name}' to '${newName}' successfully`)
+      chalk.greenBright(`Renamed '${name}' to '${newName}' successfully`),
     );
   }
 }
@@ -60,8 +64,8 @@ async function inquireName() {
       {
         name: 'new',
         message: 'Provide a new directory name:',
-        type: 'input'
-      }
+        type: 'input',
+      },
     ]);
 
     console.log('');

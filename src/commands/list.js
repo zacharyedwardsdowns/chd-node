@@ -1,43 +1,47 @@
 import fs from 'fs';
 import chalk from 'chalk';
 import { log } from '../chd-node.js';
-import { retrieveEntireList } from '../util/db.js';
+import { close, retrieveEntireList } from '../db/db.js';
 
 export async function list() {
-  const invalidList = [];
-  let chdList = [];
-
   try {
-    chdList = retrieveEntireList();
-  } catch (error) {
-    console.log(chalk.red('Failed to list directories'));
-    console.log(chalk.red('Check error.log for more details'));
-    log.error(error);
-    return;
-  }
+    const invalidList = [];
+    let chdList = [];
 
-  chdList?.forEach((item, index) => {
-    if (!fs.existsSync(item.path)) {
-      chdList.splice(index, 1);
-      invalidList.push(item);
+    try {
+      chdList = await retrieveEntireList();
+    } catch (error) {
+      console.log(chalk.red('Failed to list directories'));
+      console.log(chalk.red('Check error.log for more details'));
+      log.error(error);
+      return;
     }
-  });
 
-  if (chdList?.length) {
-    console.log(chalk.greenBright('-----------------------'));
-    console.log(chalk.greenBright(' Supported Directories '));
-    console.log(chalk.greenBright('-----------------------'));
-
-    chdList.forEach((item) => {
-      console.log(chalk.blue(item.name), item.path);
+    chdList?.forEach((item, index) => {
+      if (!fs.existsSync(item.path)) {
+        chdList.splice(index, 1);
+        invalidList.push(item);
+      }
     });
 
-    console.log(chalk.greenBright('-----------------------'));
-  } else {
-    console.log(chalk.yellowBright('No supported directories found'));
-  }
+    if (chdList?.length) {
+      console.log(chalk.greenBright('-----------------------'));
+      console.log(chalk.greenBright(' Supported Directories '));
+      console.log(chalk.greenBright('-----------------------'));
 
-  displayInvalidList(invalidList);
+      chdList.forEach((item) => {
+        console.log(chalk.blue(item.name), item.path);
+      });
+
+      console.log(chalk.greenBright('-----------------------'));
+    } else {
+      console.log(chalk.yellowBright('No supported directories found'));
+    }
+
+    displayInvalidList(invalidList);
+  } finally {
+    close();
+  }
 }
 
 function displayInvalidList(invalidList) {

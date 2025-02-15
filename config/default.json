@@ -1,8 +1,0 @@
-{
-  "github": {
-    "accessTokenUri": "https://github.com/login/oauth/access_token",
-    "deviceCodeUri": "https://github.com/login/device/code",
-    "clientId": "196b5f402862d5730f7f",
-    "scope": "gist"
-  }
-}
