@@ -1,17 +1,18 @@
+#! /usr/bin/env node
+
 import path from 'path';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
 
-/*
-FNM COMMAND PROMPT
-FOR /f "tokens=*" %i IN ('fnm env --use-on-cd') DO CALL %
- */
-export function windowsInstructions() {
-  if (process.platform !== 'win32') {
-    console.log(chalk.yellowBright('Not running windows'));
-    return;
-  }
+export function installInstructions() {
+  let dir = path.dirname(fileURLToPath(import.meta.url));
+  dir = dir.substring(0, dir.lastIndexOf('/'));
 
+  console.log(chalk.cyanBright(`To finish installation append the following to your relevant alias file:`));
+  console.log(chalk.bgBlack(chalk.magenta(`alias chd='. ${dir}/chd.sh'\n`)));
+}
+
+export function windowsInstructions() {
   let dir = path.dirname(fileURLToPath(import.meta.url));
   dir = dir.substring(0, dir.lastIndexOf('\\') + 1) + 'windows';
 

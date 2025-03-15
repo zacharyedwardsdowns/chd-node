@@ -9,16 +9,18 @@ import { rename } from './commands/rename.js';
 import { userDataDir } from './util/user-data.js';
 import { changeDirectory } from './commands/cd.js';
 import { deleteDirectory } from './commands/delete.js';
-import { windowsInstructions } from './commands/windows.js';
+import { installInstructions } from './commands/install.js';
+import { windowsInstructions } from './commands/install.js';
 import { transports, createLogger, format } from 'winston';
+
 const { combine, timestamp, json, errors } = format;
 
 export const log = createLogger({
   format: combine(timestamp(), errors({ stack: true }), json()),
   transports: new transports.File({
     filename: userDataDir() + '/log/error.log',
-    level: 'error',
-  }),
+    level: 'error'
+  })
 });
 
 export const commands = [
@@ -28,7 +30,7 @@ export const commands = [
   'uninstall',
   'windows',
   'help',
-  'rename',
+  'rename'
 ];
 
 // Ensure the script always runs in the chd project directory.
@@ -62,16 +64,21 @@ program
   .argument('[name]')
   .description(
     'cd to the directory represented by name\ncd to the subdirectory represented by name/sub-directory\n\n- data directory -\n"' +
-      userDataDir() +
-      '"'
+    userDataDir() +
+    '"'
   )
   .action(changeDirectory);
 
 if (process.platform === 'win32') {
   program
-    .command('windows')
+    .command('install')
     .description('provides installation instructions for windows')
     .action(windowsInstructions);
+} else {
+  program
+    .command('install')
+    .description('provides installation instruction')
+    .action(installInstructions);
 }
 
 program.parse();

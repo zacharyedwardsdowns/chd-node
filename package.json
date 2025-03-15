@@ -11,8 +11,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "chd-node": "node src/chd-node.js",
-    "postinstall": "node src/install/postinstall.js"
+    "chd-node": "node src/chd-node.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.8.1",
