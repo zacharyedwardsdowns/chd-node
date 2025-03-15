@@ -1,6 +1,4 @@
-# chd
-
-[![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
+# chd [![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
 
 A command line tool to make changing to frequently visited directories faster by allowing the user to link it to a name.
 Then by using 'chd name' the terminal will change to the linked directory.
