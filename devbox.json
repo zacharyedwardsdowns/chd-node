@@ -1,0 +1,21 @@
+{
+    "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
+    "packages": [
+      "nodejs@22.14.0",
+      "nodePackages.pnpm@latest"
+    ],
+    "env": {
+      "DEVBOX_COREPACK_ENABLED": "true"
+    },
+    "shell": {
+      "init_hook": [
+        "clear"
+      ],
+      "scripts": {
+        "test": [
+          "echo \"Error: no test specified\" && exit 1"
+        ]
+      }
+    }
+  }
+  
