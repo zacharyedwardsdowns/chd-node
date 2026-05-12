@@ -2,6 +2,7 @@
 
 This project has been deprecated in favor of moving to oclif:
 
+https://github.com/zacharyedwardsdowns/chd-oclif
 
 ---
 
